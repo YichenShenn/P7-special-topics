@@ -1,6 +1,6 @@
 /*
  * This class implements a queue with linked list
- * Author: Daniel
+ * Author: Daniel, Yichen, Oviya, Changrui
  * Date: 9/17/2020
  */
 
@@ -30,14 +30,15 @@ public class LLQueue {
 
     public LLQueue() {
      // to do
-    	back = new Node();
-    	front = back;
     }
     
     //offer(enqueue) adds the object at the back of the queue
     public void offer(Object o) {
      // to do
-    	if(isEmpty()) back.data = o;
+    	if(isEmpty()) {
+    		back = new Node(o, null);
+    		front = back;
+    	}
     	else {
     		back.next = new Node(o, null);
     		back = back.next;
@@ -50,10 +51,6 @@ public class LLQueue {
      // to do
     	if(isEmpty()) return null;
     	Object r = front.data;
-    	if(front.next == null) {
-    		front.data = null;
-    		return r;
-    	}
     	front = front.next;
     	return r;
     }
@@ -74,13 +71,14 @@ public class LLQueue {
     //or returns null if this queue is empty.
     public Object peek() {
         // to do
+    	if(isEmpty()) return null;
     	return front.data;
     } 
     
     //
     public boolean isEmpty() {
         // to do
-    	return front.data == null;
+    	return front == null;
     } 
     
     // For two lists to be equal they must contain the same data items in
@@ -151,6 +149,7 @@ public class LLQueue {
             Object temp = list.poll();
             System.out.println("Polling " + temp);
         }
+        if(list.isEmpty()) System.out.println("null");
        
     }
 
